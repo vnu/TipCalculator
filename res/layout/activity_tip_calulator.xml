@@ -8,123 +8,143 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".TipCalulatorActivity" >
 
-    <TextView
-        android:id="@+id/tvTipText"
+    <LinearLayout
+        android:id="@+id/llTotal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/btnTen"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="96dp"
-        android:text="@string/tip_text"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <TextView
-        android:id="@+id/tvTotal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/etTotalAmount"
-        android:layout_alignBottom="@+id/etTotalAmount"
         android:layout_alignParentLeft="true"
-        android:text="@string/total_txt"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <EditText
-        android:id="@+id/etTotalAmount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="63dp"
-        android:layout_toRightOf="@+id/tvTotal"
-        android:ems="10"
-        android:hint="@string/total_cost_hint"
-        android:inputType="numberDecimal">
-        <requestFocus /> 
-    </EditText>
+        android:layout_marginTop="42dp"
+        android:orientation="horizontal" >
 
-    <TextView
-        android:id="@+id/tvTipAmount"
+        <TextView
+            android:id="@+id/tvTotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="15dp"
+            android:text="@string/total_txt"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <EditText
+            android:id="@+id/etTotalAmount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:ems="10"
+            android:hint="@string/total_cost_hint"
+            android:inputType="numberDecimal" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llTip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/tvTipText"
-        android:layout_alignBottom="@+id/tvTipText"
-        android:layout_toRightOf="@+id/btnThirty"
-        android:text="@string/tip_amount"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:layout_alignLeft="@+id/llTotal"
+        android:layout_centerVertical="true" >
 
-    <Button
-        android:id="@+id/btnOther"
+        <TextView
+            android:id="@+id/tvTipPercent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="10dp"
+            android:text="@string/tip_percent"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <EditText
+            android:id="@+id/etTipPercent"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
+            android:layout_weight="1"
+            android:ems="10"
+            android:enabled="false"
+            android:hint="@string/tip_percent_hint"
+            android:inputType="numberDecimal" >
+
+            <requestFocus />
+        </EditText>
+
+        <Button
+            android:id="@+id/btnTipCalculate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:onClick="calculateOtherTip"
+            android:text="@string/calculate" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llButtons"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/etTotalAmount"
-        android:layout_below="@+id/etTotalAmount"
-        android:layout_marginTop="18dp"
-        android:enabled="false"
-        android:onClick="showOther"
-        android:text="@string/other" />
+        android:layout_alignLeft="@+id/llTotal"
+        android:layout_alignRight="@+id/llTotal"
+        android:layout_below="@+id/llTotal"
+        android:layout_marginTop="32dp" >
 
-    <Button
-        android:id="@+id/btnThirty"
+        <Button
+            android:id="@+id/btnTen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:enabled="false"
+            android:onClick="calculateTenPercent"
+            android:text="@string/ten_percent" />
+
+        <Button
+            android:id="@+id/btnTwenty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:enabled="false"
+            android:onClick="calculateTwentyPercent"
+            android:text="@string/twenty_percent" />
+
+        <Button
+            android:id="@+id/btnThirty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:enabled="false"
+            android:onClick="calculateThirtyPercent"
+            android:text="@string/thirty_percent" />
+
+        <Button
+            android:id="@+id/btnOther"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:enabled="false"
+            android:onClick="showOther"
+            android:text="@string/other" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llFinal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/btnOther"
-        android:layout_alignBottom="@+id/btnOther"
-        android:layout_toLeftOf="@+id/btnOther"
-        android:enabled="false"
-        android:onClick="calculateThirtyPercent"
-        android:text="@string/thirty_percent" />
+        android:layout_alignLeft="@+id/llTip"
+        android:layout_below="@+id/llTip"
+        android:layout_marginTop="46dp" >
 
-    <Button
-        android:id="@+id/btnTwenty"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/btnThirty"
-        android:layout_alignBottom="@+id/btnThirty"
-        android:layout_toLeftOf="@+id/btnThirty"
-        android:enabled="false"
-        android:onClick="calculateTwentyPercent"
-        android:text="@string/twenty_percent" />
+        <TextView
+            android:id="@+id/tvTipText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
+            android:text="@string/tip_text"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <Button
-        android:id="@+id/btnTen"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/btnTwenty"
-        android:layout_alignBottom="@+id/btnTwenty"
-        android:layout_toLeftOf="@+id/btnTwenty"
-        android:enabled="false"
-        android:onClick="calculateTenPercent"
-        android:text="@string/ten_percent" />
-
-    <TextView
-        android:id="@+id/tvTipPercent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/tvTotal"
-        android:layout_centerVertical="true"
-        android:text="@string/tip_percent"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <EditText
-        android:id="@+id/etTipPercent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/tvTipPercent"
-        android:layout_alignBottom="@+id/tvTipPercent"
-        android:layout_alignRight="@+id/tvTipText"
-        android:layout_toRightOf="@+id/tvTipPercent"
-        android:ems="10"
-        android:enabled="false"
-        android:hint="@string/tip_percent_hint"
-        android:inputType="numberDecimal" />
-
-    <Button
-        android:id="@+id/btnTipCalculate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/etTipPercent"
-        android:layout_toRightOf="@+id/etTipPercent"
-        android:enabled="false"
-        android:onClick="calculateOtherTip"
-        android:text="@string/calculate" />
+        <TextView
+            android:id="@+id/tvTipAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="@string/tip_amount"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+    </LinearLayout>
 
 </RelativeLayout>
